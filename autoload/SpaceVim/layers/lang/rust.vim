@@ -1,6 +1,6 @@
 "=============================================================================
 " rust.vim --- SpaceVim lang#rust layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -8,7 +8,7 @@
 
 
 ""
-" @section lang#rust, layer-lang-rust
+" @section lang#rust, layers-lang-rust
 " @parentsection layers
 " This layer is for Rust development. 
 "
@@ -217,3 +217,10 @@ endfunction
 " set RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 "
 " vim:set et sw=2 cc=80
+
+
+function! SpaceVim#layers#lang#rust#health() abort
+  call SpaceVim#layers#lang#rust#plugins()
+  call SpaceVim#layers#lang#rust#config()
+  return 1
+endfunction

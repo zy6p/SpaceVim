@@ -1,13 +1,13 @@
 "=============================================================================
 " dart.vim --- SpaceVim lang#dart layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#dart, layer-lang-dart
+" @section lang#dart, layers-lang-dart
 " @parentsection layers
 " @subsection Intro
 "
@@ -193,3 +193,9 @@ else
     return function(substitute(a:fstr, 's:', s:_s, 'g'))
   endfunction
 endif
+
+function! SpaceVim#layers#lang#dart#health() abort
+  call SpaceVim#layers#lang#dart#plugins()
+  call SpaceVim#layers#lang#dart#config()
+  return 1
+endfunction

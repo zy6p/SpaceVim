@@ -1,6 +1,6 @@
 "=============================================================================
 " git.vim --- SpaceVim git layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -8,7 +8,7 @@
 
 
 ""
-" @section git, layer-git
+" @section git, layers-git
 " @parentsection layers
 " `git` layer provides git integration for SpaceVim.
 "
@@ -46,9 +46,6 @@ function! SpaceVim#layers#git#plugins() abort
     call add(plugins, ['lambdalisue/vim-gita', { 'on_cmd' : 'Gita'}])
   else
     call add(plugins, [g:_spacevim_root_dir . 'bundle/git.vim', { 'merged' : 0}])
-  endif
-  if g:spacevim_filemanager ==# 'nerdtree'
-    call add(plugins, ['Xuyuanp/nerdtree-git-plugin', {'merged' : 0}])
   endif
   return plugins
 endfunction
@@ -150,6 +147,15 @@ function! s:display_last_commit_of_current_line() abort
   if v:shell_error == 0
     echo 'Last commit of current line is: ' . title
   endif
+endfunction
+
+
+function! SpaceVim#layers#git#health() abort
+  call SpaceVim#layers#git#plugins()
+  call SpaceVim#layers#git#config()
+
+  return 1
+
 endfunction
 
 " vim:set et sw=2 cc=80:

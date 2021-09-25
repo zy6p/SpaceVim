@@ -1,6 +1,6 @@
 "=============================================================================
 " vim.vim --- SpaceVim vim layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -123,4 +123,10 @@ endfunction
 
 function! s:helpversion_cursor() abort
   exe 'HelpfulVersion' expand('<cword>')
+endfunction
+
+function! SpaceVim#layers#lang#vim#health() abort
+  call SpaceVim#layers#lang#vim#plugins()
+  call SpaceVim#layers#lang#vim#config()
+  return 1
 endfunction

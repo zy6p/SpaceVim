@@ -1,13 +1,13 @@
 "=============================================================================
 " coffeescript.vim --- lang#coffeescript layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#coffeescript, layer-lang-coffeescript
+" @section lang#coffeescript, layers-lang-coffeescript
 " @parentsection layers
 " This layer is for coffeescript development, disabled by default, to enable this
 " layer, add following snippet to your SpaceVim configuration file.
@@ -107,4 +107,10 @@ function! s:filter_coffee_lint(lines, job) abort
 endfunction
 function! SpaceVim#layers#lang#coffeescript#set_variable(var) abort
   let s:coffee_interpreter = get(a:var, 'coffee_interpreter', s:coffee_interpreter)
+endfunction
+
+function! SpaceVim#layers#lang#coffeescript#health() abort
+  call SpaceVim#layers#lang#coffeescript#plugins()
+  call SpaceVim#layers#lang#coffeescript#config()
+  return 1
 endfunction

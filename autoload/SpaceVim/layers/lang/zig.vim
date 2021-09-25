@@ -1,6 +1,6 @@
 "=============================================================================
 " zig.vim --- zig language support
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg@outlook.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -58,4 +58,10 @@ endfunction
 
 function! SpaceVim#layers#lang#zig#set_variable(opt) abort
   let s:ztagsbin = get(a:opt, 'ztagsbin', s:ztagsbin) 
+endfunction
+
+function! SpaceVim#layers#lang#zig#health() abort
+  call SpaceVim#layers#lang#zig#plugins()
+  call SpaceVim#layers#lang#zig#config()
+  return 1
 endfunction

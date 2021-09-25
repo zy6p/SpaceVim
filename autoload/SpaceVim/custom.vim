@@ -1,6 +1,6 @@
 "=============================================================================
 " custom.vim --- custom API in SpaceVim
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -83,6 +83,13 @@ function! s:write_to_config(config) abort
   call writefile(a:config, cf, '')
 endfunction
 
+
+""
+" The first parameter sets the type of shortcut key,
+" which can be `nnoremap` or `nmap`, the second parameter is a list of keys,
+" and the third parameter is an ex command or key binding,
+" depending on whether the last parameter is true.
+" The fourth parameter is a short description of this custom key binding.
 function! SpaceVim#custom#SPC(m, keys, cmd, desc, is_cmd) abort
   call add(g:_spacevim_mappings_space_custom,[a:m, a:keys, a:cmd, a:desc, a:is_cmd])
 endfunction
@@ -177,7 +184,7 @@ function! SpaceVim#custom#write(force) abort
 endfunction
 
 function! s:path_to_fname(path) abort
-  return expand(g:spacevim_data_dir.'/SpaceVim/conf/') . substitute(a:path, '[\\/:;.]', '_', 'g') . '.json'
+  return expand(g:spacevim_data_dir.'SpaceVim/conf/') . substitute(a:path, '[\\/:;.]', '_', 'g') . '.json'
 endfunction
 
 function! SpaceVim#custom#load() abort
@@ -195,6 +202,10 @@ function! SpaceVim#custom#load() abort
       call SpaceVim#custom#apply(conf, 'local')
     else
       let conf = s:TOML.parse_file(local_conf)
+      let dir = s:FILE.unify_path(expand(g:spacevim_data_dir . 'SpaceVim/conf/'))
+      if !isdirectory(dir)
+        call mkdir(dir, 'p')
+      endif
       call SpaceVim#logger#info('generate local conf: ' . local_conf_cache)
       call writefile([s:JSON.json_encode(conf)], local_conf_cache)
       call SpaceVim#custom#apply(conf, 'local')
@@ -233,12 +244,16 @@ function! s:load_glob_conf() abort
   if filereadable(global_dir . 'init.toml')
     let g:_spacevim_global_config_path = global_dir . 'init.toml'
     let local_conf = global_dir . 'init.toml'
-    let local_conf_cache = s:FILE.unify_path(expand(g:spacevim_data_dir.'/SpaceVim/conf/' . fnamemodify(resolve(local_conf), ':t:r') . '.json'))
+    let local_conf_cache = s:FILE.unify_path(expand(g:spacevim_data_dir . 'SpaceVim/conf/' . fnamemodify(resolve(local_conf), ':t:r') . '.json'))
     let &rtp = global_dir . ',' . &rtp . ',' . global_dir . 'after'
     if getftime(resolve(local_conf)) < getftime(resolve(local_conf_cache))
       let conf = s:JSON.json_decode(join(readfile(local_conf_cache, ''), ''))
       call SpaceVim#custom#apply(conf, 'glob')
     else
+      let dir = s:FILE.unify_path(expand(g:spacevim_data_dir . 'SpaceVim/conf/'))
+      if !isdirectory(dir)
+        call mkdir(dir, 'p')
+      endif
       let conf = s:TOML.parse_file(local_conf)
       call writefile([s:JSON.json_encode(conf)], local_conf_cache)
       call SpaceVim#custom#apply(conf, 'glob')

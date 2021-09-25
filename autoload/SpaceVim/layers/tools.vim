@@ -1,6 +1,6 @@
 "=============================================================================
 " tools.vim --- SpaceVim tools layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -71,6 +71,12 @@ function! SpaceVim#layers#tools#config() abort
   if maparg('<C-_>', 'n') ==# ''
     nnoremap <silent> <C-_> <Esc>:Ydc<CR>
   endif
+endfunction
+
+function! SpaceVim#layers#tools#health() abort
+  call SpaceVim#layers#tools#plugins()
+  call SpaceVim#layers#tools#config()
+  return 1
 endfunction
 
 " vim:set et sw=2 cc=80:

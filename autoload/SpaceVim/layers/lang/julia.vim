@@ -1,13 +1,13 @@
 "=============================================================================
 " julia.vim --- SpaceVim lang#julia layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#julia, layer-lang-julia
+" @section lang#julia, layers-lang-julia
 " @parentsection layers
 " This layer is for julia development, disabled by default, to enable this
 " layer, add following snippet to your SpaceVim configuration file.
@@ -82,4 +82,10 @@ function! s:language_specified_mappings() abort
     call SpaceVim#mapping#space#langSPC('nnoremap', ['l', 'e'],
           \ 'call SpaceVim#lsp#rename()', 'rename symbol', 1)
   endif
+endfunction
+
+function! SpaceVim#layers#lang#julia#health() abort
+  call SpaceVim#layers#lang#julia#plugins()
+  call SpaceVim#layers#lang#julia#config()
+  return 1
 endfunction

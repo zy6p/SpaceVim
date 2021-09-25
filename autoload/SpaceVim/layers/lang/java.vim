@@ -1,13 +1,13 @@
 "=============================================================================
 " java.vim --- SpaceVim lang#java layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#java, layer-lang-java
+" @section lang#java, layers-lang-java
 " @parentsection layers
 " This layer is for java development, disabled by default, to enable this
 " layer, add following snippet to your SpaceVim configuration file.
@@ -331,3 +331,10 @@ function! SpaceVim#layers#lang#java#set_variable(var) abort
 endfunction
 
 " vim:set et sw=2 cc=80:
+
+
+function! SpaceVim#layers#lang#java#health() abort
+  call SpaceVim#layers#lang#java#plugins()
+  call SpaceVim#layers#lang#java#config()
+  return 1
+endfunction

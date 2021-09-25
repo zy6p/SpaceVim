@@ -1,13 +1,13 @@
 "=============================================================================
 " go.vim --- SpaceVim lang#go layer
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#go, layer-lang-go
+" @section lang#go, layers-lang-go
 " @parentsection layers
 " This layer includes code completion and syntax checking for Go development.
 "
@@ -145,4 +145,10 @@ function! s:language_specified_mappings() abort
         \ ':GoFreevars',
         \ 'freevars', 1)
   call SpaceVim#mapping#space#langSPC('nmap', ['l','r'], 'call SpaceVim#plugins#runner#open()', 'execute current file', 1)
+endfunction
+
+function! SpaceVim#layers#lang#go#health() abort
+  call SpaceVim#layers#lang#go#plugins()
+  call SpaceVim#layers#lang#go#config()
+  return 1
 endfunction

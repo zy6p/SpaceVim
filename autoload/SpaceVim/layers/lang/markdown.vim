@@ -1,13 +1,13 @@
 "=============================================================================
 " markdown.vim --- lang#markdown layer for SpaceVim
-" Copyright (c) 2016-2020 Wang Shidong & Contributors
+" Copyright (c) 2016-2021 Wang Shidong & Contributors
 " Author: Shidong Wang < wsdjeg at 163.com >
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
 
 ""
-" @section lang#markdown, layer-lang-markdown
+" @section lang#markdown, layers-lang-markdown
 " @parentsection layers
 " This layer is for markdown language, disabled by default, to enable this
 " layer, add following snippet to your SpaceVim configuration file.
@@ -195,3 +195,9 @@ function! s:run_code_in_block() abort
   endif
 endfunction
 
+
+function! SpaceVim#layers#lang#markdown#health() abort
+  call SpaceVim#layers#lang#markdown#plugins()
+  call SpaceVim#layers#lang#markdown#config()
+  return 1
+endfunction
