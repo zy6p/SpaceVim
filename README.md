@@ -2,7 +2,7 @@
 
 Github forces user to enable 2FA, and I can't log in anymore.
 
-So this repository was deleted, and we use custom url now.
+So this repository was moved to [custom url](https://spacevim.org/git/repos/SpaceVim/) now.
 
 - For old SpaceVim users, follow these steps:
 
